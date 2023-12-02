@@ -44,4 +44,15 @@ class CubeGame:
         return sum_good_games
     
 
-    
+    def get_power_games(self, path:str)-> int:
+        
+        max_cubes = dictionary = {'red':12, 'green': 13, 'blue':14}
+
+        sum_power_games = 0 
+        lines = self._read_data(path)
+
+        for num, line in enumerate(lines,1):
+            dictionary = self._process_line(line)
+            sum_power_games = sum_power_games + (dictionary['red']*dictionary['green']*dictionary['blue'])
+
+        return sum_power_games
