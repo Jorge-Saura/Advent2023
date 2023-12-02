@@ -42,3 +42,6 @@ class CubeGame:
                                                 and dictionary['blue'] <= max_cubes['blue'] else sum_good_games
 
         return sum_good_games
+    
+
+    
