@@ -34,15 +34,15 @@ class TestDay01(unittest.TestCase):
         self.assertEqual(first_digit,8)
 
         
-        num = calibrator._process_line(result[0])
+        num = calibrator._process_line_2(result[0])
         self.assertEqual(num,29)
 
-        num = calibrator._process_line(result[1])
+        num = calibrator._process_line_2(result[1])
         self.assertEqual(num,83)
 
-        code = calibrator.get_calibrator_code("Day01\DataSimple2.txt")
+        code = calibrator.get_calibrator_code_2("Day01\DataSimple2.txt")
         self.assertEqual(code,281)
-        code = calibrator.get_calibrator_code("Day01\Data.txt")
+        code = calibrator.get_calibrator_code_2("Day01\Data.txt")
         self.assertEqual(code,55614)   
 
 

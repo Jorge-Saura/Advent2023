@@ -38,11 +38,20 @@ class Calibrator:
         
     def _process_line(self, line:str)-> int:
         
+        first_digit = next(n for n in line if n.isdigit())
+        last_digit = next(n for n in reversed(line) if n.isdigit())
+
+        return (int(first_digit)*10) + int(last_digit)
+
+
+    def _process_line_2(self, line:str)-> int:
+        
         first_digit = self._get_first_digit(line)
         last_digit = self._get_last_digit(line)
 
         return (first_digit*10) + last_digit
     
+
     def get_calibrator_code (self, path:str)-> int:
         
         calibrator_code = 0 
@@ -53,3 +62,16 @@ class Calibrator:
             calibrator_code += line_number
 
         return calibrator_code
+    
+
+    def get_calibrator_code_2 (self, path:str)-> int:
+        
+        calibrator_code = 0 
+        lines = self._read_data(path)
+
+        for line in lines:
+            line_number = self._process_line_2(line)
+            calibrator_code += line_number
+
+        return calibrator_code
+
