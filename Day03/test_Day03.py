@@ -27,10 +27,24 @@ class TestDay03(unittest.TestCase):
 
 
         ratios = engine.get_gear_ratios("Day03\DataSimple.txt")
-        self.assertEqual(ratios, 4362)
+        self.assertEqual(ratios, 4361)
 
         ratios = engine.get_gear_ratios("Day03\Data.txt")
-        self.assertEqual(ratios, 4361)
+        self.assertEqual(ratios, 535078)
+
+
+    def test_GearRatios_2(self):
+
+        engine = challenges.GearRatios()
+
+        ratios = engine.get_gear_arterics_ratios("Day03\DataSimple.txt")
+        self.assertEqual(ratios, 467835)
+
+        # 60727659
+        # 75312571
+        
+        ratios = engine.get_gear_arterics_ratios("Day03\Data.txt")
+        self.assertEqual(ratios, 75312571)
 
     # def test_pruebas(self):
 

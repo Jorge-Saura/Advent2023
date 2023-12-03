@@ -32,14 +32,42 @@ class GearRatios:
 
         return  numbers_in_line
 
+    def get_gear_arterics_ratios(self, path:str)-> int:
+        ratios = 0
+
+        lines = self._read_data(path)
+        min_line = 0
+        max_line = len(lines) - 1
+        min_char = 0
+        max_char = len(lines[0]) - 1
+
+        for num_line, line in enumerate(lines,0):
+            arterisc_in_line = [pos for pos,n in enumerate(line) if n == '*']
+
+            for arterisc in arterisc_in_line:
+                adjacent_numbers = []
+                #miramos arriba
+                if num_line > min_line:
+                    numbers_top_line = self._get_numbers_in_line(lines[num_line - 1])
+                    adjacent_numbers.extend([n[0] for n in numbers_top_line if n[1]-1 <= arterisc <= n[2]+1])
+                #miramos abajo
+                if num_line < max_line:
+                    numbers_bottom_line = self._get_numbers_in_line(lines[num_line + 1])
+                    adjacent_numbers.extend([n[0] for n in numbers_bottom_line if n[1]-1 <= arterisc <= n[2]+1])
+                #miramos a los lados
+
+                numbers_in_line = self._get_numbers_in_line(line)
+                adjacent_numbers.extend([n[0] for n in numbers_in_line if n[1] - 1 == arterisc or arterisc == n[2] + 1])
+
+                if len(adjacent_numbers) == 2:
+                    ratios = ratios + (adjacent_numbers[0] * adjacent_numbers[1])
 
 
 
+        return ratios
 
 
 
-
-    
     def get_gear_ratios(self, path:str)-> int:
         ratios = 0
 
@@ -74,7 +102,6 @@ class GearRatios:
                 all_possible_chars = top_chars + middle_chars + bottom_chars
                 if any(char not in '0123456789.' for char in all_possible_chars):
                     ratios += number[0]
-
 
 
 
