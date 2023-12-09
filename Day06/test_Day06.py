@@ -43,7 +43,14 @@ class TestDay06(unittest.TestCase):
         self.assertEqual(d,288)
 
         d = race.get_good_times("Day06\Data.txt")
-        self.assertEqual(d,288)
+        self.assertEqual(d,588588)
+
+    def test_get_times_big_number_(self):
+
+        race = challenges.BoatRace()
+
+        d = race._get_times_higher_distances(44826981,202107611381458)
+        self.assertEqual(len(d),34655848)
 
 
 if __name__ == "__main__":
