@@ -4,7 +4,7 @@ import unittest
 
 import Day05.Day05 as challenges
 
-class TestDay04(unittest.TestCase):
+class TestDay05(unittest.TestCase):
 
     def test_Cultivation(self):
 
