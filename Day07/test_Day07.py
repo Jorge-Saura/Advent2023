@@ -73,6 +73,41 @@ class TestDay07(unittest.TestCase):
         total = cards.get_total_winnings("Day07\Data.txt")
         self.assertEqual(total,249638405)
 
+    def test_get_hand_type_with_joker(self):
+
+        cards = challenges.CamelCards()
+
+        hand = cards._get_hand_type_with_joker('AAAAA')
+        self.assertEqual(hand,'five')
+
+        hand = cards._get_hand_type_with_joker('ZZZZZ')
+        self.assertEqual(hand,'five')
+
+        hand = cards._get_hand_type_with_joker('ZZZZA')
+        self.assertEqual(hand,'five')
+
+        hand = cards._get_hand_type_with_joker('ZZAVV')
+        self.assertEqual(hand,'full')
+
+        hand = cards._get_hand_type_with_joker('ZZAPO')
+        self.assertEqual(hand,'three')
+
+        hand = cards._get_hand_type_with_joker('ZAAPO')
+        self.assertEqual(hand,'three')
+
+        hand = cards._get_hand_type_with_joker('ZARPO')
+        self.assertEqual(hand,'one')
+
+    def test_get_total_winnings_with_joker(self):
+
+        cards = challenges.CamelCards()
+
+        total = cards.get_total_winnings_with_joker("Day07\DataSimple.txt")
+        self.assertEqual(total,5905)
+
+        total = cards.get_total_winnings_with_joker("Day07\Data.txt")
+        self.assertEqual(total,249776650)
+
 if __name__ == "__main__":
 
     unittest.main()
