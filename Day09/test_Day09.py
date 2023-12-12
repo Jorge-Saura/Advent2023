@@ -42,15 +42,25 @@ class TestDay09(unittest.TestCase):
         data = mirage._get_next_number([2,6,15,45],[0,2,6,15])
         self.assertEqual(data,68)                
 
-    def test_get_next_numbers(self):
+    def test_get_next_right_numbers(self):
 
         mirage = challenges.Mirage()
-        data = mirage.get_next_numbers("Day09\DataSimple.txt")
+        data = mirage.get_next_right_numbers("Day09\DataSimple.txt")
         self.assertEqual(data,114)        
 
         mirage = challenges.Mirage()
-        data = mirage.get_next_numbers("Day09\Data.txt")
-        self.assertEqual(data,114)      
+        data = mirage.get_next_right_numbers("Day09\Data.txt")
+        self.assertEqual(data,1882395907)    
+
+    def test_get_next_left_numbers(self):
+
+        mirage = challenges.Mirage()
+        data = mirage.get_next_left_numbers("Day09\DataSimple.txt")
+        self.assertEqual(data,2)        
+
+        mirage = challenges.Mirage()
+        data = mirage.get_next_left_numbers("Day09\Data.txt")
+        self.assertEqual(data,1005)             
 
     
 
