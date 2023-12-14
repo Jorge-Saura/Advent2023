@@ -69,3 +69,25 @@ class Mirage:
 
         return sum_next_numbers
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
