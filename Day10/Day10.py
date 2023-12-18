@@ -103,3 +103,24 @@ class Maze:
 
         
         return max(first_way.values())
+    
+    def _get_loop(self, start:tuple, grid:list) -> list():
+
+        loop = list()
+
+        current, _ = self._get_connectors(start,grid)
+        last = start
+        loop.append(start)
+
+        while current != start:
+            
+            loop.append(current)
+            new_points = self._get_connectors(current,grid)
+            
+            next_node = new_points[0] if new_points[0] != last else new_points[1]
+            last = current
+            current = next_node
+            
+
+        return loop
+

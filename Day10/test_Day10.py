@@ -53,9 +53,6 @@ class TestDay10(unittest.TestCase):
         self.assertEqual(connectors[0],(1,2))
         self.assertEqual(connectors[1],(0,3))
 
-
-    
-
     def test_get_surounding_points(self):
 
         pipeMaze = challenges.Maze()
@@ -72,7 +69,6 @@ class TestDay10(unittest.TestCase):
         points = pipeMaze._get_surrounding_points((3,3),4,4)
         self.assertEqual(len(points),3)
 
-
     def test_get_max_distance(self):
 
         pipeMaze = challenges.Maze()
@@ -87,6 +83,16 @@ class TestDay10(unittest.TestCase):
 
         max_distance = pipeMaze.get_max_distance("Day10\Data.txt")
         self.assertEqual(max_distance,6768)
+
+
+    def test_get_loop(self):
+
+        pipeMaze = challenges.Maze()
+        start, maze = pipeMaze._load_data("Day10\DataSimple.txt")
+        loop = pipeMaze._get_loop(start,maze)
+        self.assertEqual(len(loop),8)
+
+
 
 
 if __name__ == "__main__":
