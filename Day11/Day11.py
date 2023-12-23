@@ -101,5 +101,41 @@ class CosmicExpansion:
             
 
 
+    def get_shortest_paths2(self, path:str, distance:int) -> int:
+
+        grid = self._load_data(path)
+
+        hor_lines = self._get_horizontal_empty_lines(grid)
+        ver_lines = self._get_vertical_empty_lines(grid)
+
+        galaxies = self._get_galaxies(grid)
+
+        shortests_paths =list()
+
+        for pos, galaxy in enumerate(galaxies):
+            paths = list()   
+            for other_galaxy in galaxies[pos+1:]:
+                initial_distance = self._get_distance(galaxy, other_galaxy)
+                min_x_galaxy = min(galaxy[0],other_galaxy[0])
+                max_x_galaxy = max(galaxy[0],other_galaxy[0])
+                for n in ver_lines:
+                    if  min_x_galaxy < n < max_x_galaxy:
+                        initial_distance += distance - 1
+
+                min_y_galaxy = min(galaxy[1],other_galaxy[1])
+                max_y_galaxy = max(galaxy[1],other_galaxy[1])
+                for n in hor_lines:
+                    if  min_y_galaxy < n < max_y_galaxy:
+                        initial_distance += distance - 1 
+                paths.append(initial_distance)
+
+            if paths:
+                shortests_paths.append(sum(paths))
+
+            
+
+
+        return sum(shortests_paths)
+            
 
 

@@ -65,6 +65,19 @@ class TestDay11(unittest.TestCase):
         num = cosmos.get_shortest_paths("Day11\Data.txt")
         self.assertEqual(num,10173804)
 
+    def test_get_shortest_paths2(self):
+
+        cosmos = challenges.CosmicExpansion()
+
+        num = cosmos.get_shortest_paths2("Day11\DataSimple.txt",10)
+        self.assertEqual(num,1030)
+
+        num = cosmos.get_shortest_paths2("Day11\DataSimple.txt",100)
+        self.assertEqual(num,8410)
+
+        num = cosmos.get_shortest_paths2("Day11\Data.txt", 1000000)
+        self.assertEqual(num,634324905172)
+
 
 if __name__ == "__main__":
 
