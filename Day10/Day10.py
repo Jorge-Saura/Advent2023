@@ -12,6 +12,7 @@ class Maze:
                 x = line.find('S')
                 if x != -1:
                     start = (x,y)
+
                 
         return [start, maze]
     
@@ -81,10 +82,6 @@ class Maze:
         first_way = dict()
         second_way = dict()
 
-        max_distance = 0
-        visited_points = dict()
-        
-        current_point = start
         f_current, s_current = self._get_connectors(start,maze)
         first_way[start] = 0
         first_way[f_current] = 1
@@ -123,4 +120,55 @@ class Maze:
             
 
         return loop
+    
+    def _replace_str_index(self, text, index=0, replacement=''):
+        return f'{text[:index]}{replacement}{text[index+1:]}'
+    
+    def _paint_outsiders(self, grid:list, loop:list)-> list:
+
+        new_grid = grid.copy()
+        max_y = len(new_grid)
+        max_x = len(new_grid[0])
+        
+        while True:
+            num_changes = 0
+            for y, line in enumerate(new_grid):
+                for x, c in enumerate(line):
+                    if x == 0 and c == '.':
+                        new_grid[y] = self._replace_str_index(new_grid[y],x,'O')
+                        num_changes += 1
+                    elif c in 'S-7|LJF' and (x,y) not in loop:
+                        new_grid[y] = self._replace_str_index(new_grid[y],x,'O')
+                        num_changes += 1
+                    else:
+                        suroundings = self._get_surrounding_points((x,y), max_x, max_y)
+                        if c == '.' and any((new_grid[y][x] == 'O' for x,y in suroundings)):
+                            new_grid[y] = self._replace_str_index(new_grid[y],x,'O')
+                            num_changes += 1
+            if num_changes == 0:
+                break
+
+        return new_grid
+    
+    def _get_inside_points(self, grid:list, loop:list)-> list:
+
+        number_of_points = 0
+      
+        for y, line in enumerate(grid):
+
+            check_string = ''
+            for x, c in enumerate(line):
+                if (x,y) not in loop:
+                    check_string += 'O'
+
+                    regex = r"L-*7|F-*J|\|"
+                    walls = re.findall(regex,check_string[:x])
+                    num_walls = len(walls)
+                    number_of_points = number_of_points + 1 if num_walls % 2 == 1 else number_of_points
+                else:
+                    check_string += c
+                    
+
+        return number_of_points
+
 

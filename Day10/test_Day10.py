@@ -92,6 +92,38 @@ class TestDay10(unittest.TestCase):
         loop = pipeMaze._get_loop(start,maze)
         self.assertEqual(len(loop),8)
 
+    def test_paint_outsiders(self):
+
+        pipeMaze = challenges.Maze()
+        start, maze = pipeMaze._load_data("Day10\DataSimple.txt")
+        loop = pipeMaze._get_loop(start, maze)
+        num = pipeMaze._get_inside_points(maze,loop)
+        self.assertEqual(num,1)
+
+        start, maze = pipeMaze._load_data("Day10\DataSimple1.txt")
+        loop = pipeMaze._get_loop(start, maze)
+        num = pipeMaze._get_inside_points(maze,loop)
+        self.assertEqual(num,1)
+
+        start, maze = pipeMaze._load_data("Day10\DataSimple3.txt")
+        loop = pipeMaze._get_loop(start, maze)
+        num = pipeMaze._get_inside_points(maze,loop)
+        self.assertEqual(num,4)
+
+        start, maze = pipeMaze._load_data("Day10\DataSimple4.txt")
+        loop = pipeMaze._get_loop(start, maze)
+        num = pipeMaze._get_inside_points(maze,loop)
+        self.assertEqual(num,4)
+
+        start, maze = pipeMaze._load_data("Day10\DataSimple5.txt")
+        loop = pipeMaze._get_loop(start, maze)
+        num = pipeMaze._get_inside_points(maze,loop)
+        self.assertEqual(num,10)
+
+        start, maze = pipeMaze._load_data("Day10\Data.txt")
+        loop = pipeMaze._get_loop(start, maze)
+        num = pipeMaze._get_inside_points(maze,loop)
+        self.assertEqual(num,351)
 
 
 
